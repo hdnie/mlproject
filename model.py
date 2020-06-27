@@ -2,6 +2,7 @@ import torch as torch
 import torch.nn as nn
 from torch.autograd import Function
 import torch.nn.functional as F
+
 class lstm(nn.Module):
     def __init__(self):
         super(lstm,self).__init__()
@@ -12,6 +13,7 @@ class lstm(nn.Module):
         x=self.output(x)
         x=nn.Softmax()(x)
         return x
+    
 class MLP(nn.Module):
     def __init__(self):
         super(MLP,self).__init__()
@@ -26,11 +28,9 @@ class MLP(nn.Module):
 class Flatten(nn.Module):
     def __init__(self):
         super(Flatten,self).__init__()
-
     def forward(self,x):
-
-        # -1 把第一个维度保持住
         return x.reshape((x.shape[0],-1))
+    
 class CNN(nn.Module):
     def __init__(self):
         super(CNN,self).__init__()
@@ -60,6 +60,7 @@ class CNN(nn.Module):
         x=self.l2(x)
         x=nn.Softmax()(x)
         return x
+    
 class utime(nn.Module):
     def __init__(self,classnum=4,samplerate=400,sec=1):
         super(utime,self).__init__()
